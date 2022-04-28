@@ -7,9 +7,9 @@
 EmployeeManager(){
     _c_amount = 0;
     _e_amount = 0;
-    _companies = new AvlTree(companyData, int);
-    _employees_by_ID = new AvlTree(employeeData, int);
-    _employees_by_salary new AvlTree(employeeData, salaryKey);
+    _companies = AvlTree();
+    _employees_by_ID = AvlTree();
+    _employees_by_salary AvlTree();
 }
 
 StatusType AddCompany(int CompanyID, int Value){
@@ -18,7 +18,7 @@ StatusType AddCompany(int CompanyID, int Value){
     }
     company_data = companyData(Value);
     if (company_data == NULL) return ALLOCATION_ERROR;
-    StatusType status= _companies.add(CompanyID, company_data);
+    StatusType status= _companies.insert(Dcompany_data, CompanyI);
     if (status == SUCCESS)
             _c_amount++;
     free(company_data); //is there a special constructor? is it automatic?
@@ -29,18 +29,27 @@ StatusType AddEmployee(int EmployeeID, int CompanyID, int Salary, int Grade){
     if((CompanyID <= 0) || (EmployeeID <= 0) || (Salary <= 0) || Grade <= 0)){
         return INVALID_INPUT;
     }
-    employer = _companies.find(CompanyID);
-    if (employer = NULL) return FAILURE;
+    companyData employer = _companies.find(CompanyID);
+    if (employer == NULL) return FAILURE;
     if (_employees_by_ID.find(EmployeeID) != NULL) return FAILURE;
 
     employee_data = employeeData(EmployeeID, companyData*, Salary, Grade);
     if (employee_date == NULL) return ALLOCATION_ERROR;
 
-    StatusType status = _employees_by_ID.add(EmployeeID, employee_data);
+    StatusType status = _employees_by_ID.insert(EmployeeID, employee_data);
     if (status!=SUCCESS) return status;
-    status = _employees_by_ID.add(salaryKey(salary, EmployeeID), employee_data);
-    if (status == SUCCESS)
-        _c_amount++;
+    status = _employees_by_salary.insert(salaryKey(salary, EmployeeID), employee_data);
+    employer.add_employee(EmployeeID, salaryKey(salary, EmployeeID), employee_data);
+
+    if (status == SUCCESS){
+        _e_amount++;
+    }
+
+    else{
+        _employees_by_ID.remove(EmployeeID, employee_data);
+        _employees_by_salary.remove(salaryKey(salary, EmployeeID), employee_data);
+    }
+
     free(employee_data); //is there a special constructor? is it automatic?
     return status;
 }

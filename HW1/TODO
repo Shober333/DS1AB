@@ -1,4 +1,3 @@
 
 
-companyData(int value); a constructor companyData.h
 employeeData(int value); a constructor employeeData.h

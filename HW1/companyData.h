@@ -11,8 +11,17 @@ private:
     int _value;
     int _size; //employeeAmount
     AvlTree _employees_by_ID;
-    AvlTree _employees_by_salery;
+    AvlTree _employees_by_salary;
 public:
+
+    companyData(int value){
+        _value = value;
+        _size = 0;
+        _employees_by_ID = AvlTree();
+        _employees_by_salary = AvlTree();
+    }
+
+
     //getters
     int value()const{
         return _value;
@@ -26,13 +35,17 @@ public:
     void update_value(int new_value){
         _value = new_value;
     }
-    void update_size(int new_size){
-        _size = new_size;
+
+    void add_employee(int ID, salaryKey s_k, employeeData data){
+        _employees_by_ID.insert(data, ID);
+        _employees_by_salary.insert(data, s_k);
     }
 
     void update_tree(AvlTree new_by_ID, AvlTree new_by_salery){
         //maybe we want to only allow add and remove?
     }
+
+
 
     companyData update(companyData new_data){
         this.update_value(new_data.get_value());
