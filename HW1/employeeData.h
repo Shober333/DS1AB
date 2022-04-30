@@ -9,7 +9,7 @@
 class employeeData {
 private:
     int _salary;
-    int grade;
+    int _grade;
 
     companyData* _employer;
     int _employer_ID;
@@ -18,9 +18,27 @@ private:
 
 public:
 
+    employeeData(int salary, int grade, companyData* employerData, int employer_ID ){
+        _salary = salary;
+        _grade = grade;
+        _employer = employer;
+        _employer_ID = employer_ID;
+    }
 
+    //some getters:
+    int salary(){
+        return _salary;
+    }
 
-    companyData get_employer(){
+    int grade(){
+        return _grade;
+    }
+
+    int employer_ID(){
+        return _employer_ID;
+    }
+
+    companyData employerData(){
         return _employer*;
     }
 
