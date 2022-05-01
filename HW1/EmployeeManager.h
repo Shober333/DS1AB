@@ -8,12 +8,13 @@
 
 // ................................................
 typedef enum {
-    SUCCESS = 0,
-    FAILURE = -1,
-    ALLOCATION_ERROR = -2,
-    INVALID_INPUT = -3
-} StatusType;
+    EM_SUCCESS = 0,
+    EM_FAILURE = -1,
+    EM_ALLOCATION_ERROR = -2,
+    EM_INVALID_INPUT = -3
+} EMStatusType;
 // ................................................
+
 
 
 class EmployeeManager {
@@ -29,33 +30,33 @@ public:
 
     EmployeeManager();
 
-    StatusType AddCompany(int CompanyID, int Value);
+    EMStatusType AddCompany(int CompanyID, int Value);
 
-    StatusType AddEmployee(int EmployeeID, int CompanyID, int Salary, int Grade);
+    EMStatusType AddEmployee(int EmployeeID, int CompanyID, int Salary, int Grade);
 
-    StatusType RemoveCompany(int CompanyID);
+    EMStatusType RemoveCompany(int CompanyID);
 
-    StatusType RemoveEmployee(int EmployeeID);
+    EMStatusType RemoveEmployee(int EmployeeID);
 
-    StatusType GetCompanyInfo(int CompanyID, int *Value, int *NumEmployees);
+    EMStatusType GetCompanyInfo(int CompanyID, int *Value, int *NumEmployees);
 
-    StatusType GetEmployeeInfo(int EmployeeID, int *EmployerID, int *Salary, int *Grade);
+    EMStatusType GetEmployeeInfo(int EmployeeID, int *EmployerID, int *Salary, int *Grade);
 
-    StatusType IncreaseCompanyValue(int CompanyID, int ValueIncrease);
+    EMStatusType IncreaseCompanyValue(int CompanyID, int ValueIncrease);
 
-    StatusType PromoteEmployee(int EmployeeID, int SalaryIncrease, int BumpGrade);
+    EMStatusType PromoteEmployee(int EmployeeID, int SalaryIncrease, int BumpGrade);
 
-    StatusType HireEmployee(int EmployeeID, int NewCompanyID);
+    EMStatusType HireEmployee(int EmployeeID, int NewCompanyID);
 
-    StatusType AcquireCompany(int AcquirerID, int TargetID, double Factor);
+    EMStatusType AcquireCompany(int AcquirerID, int TargetID, double Factor);
 
-    StatusType GetHighestEarner(int CompanyID, int *EmployeeID);
+    EMStatusType GetHighestEarner(int CompanyID, int *EmployeeID);
 
-    StatusType GetAllEmployeesBySalary(int CompanyID, int **Employees, int *NumOfEmployees);
+    EMStatusType GetAllEmployeesBySalary(int CompanyID, int **Employees, int *NumOfEmployees);
 
-    StatusType GetHighestEarnerInEachCompany(int NumOfCompanies, int **Employees);
+    EMStatusType GetHighestEarnerInEachCompany(int NumOfCompanies, int **Employees);
 
-    StatusType GetNumEmployeesMatching(int CompanyID, int MinEmployeeID, int MaxEmployeeId,
+    EMStatusType GetNumEmployeesMatching(int CompanyID, int MinEmployeeID, int MaxEmployeeId,
                                        int MinSalary, int MinGrade, int *TotalNumOfEmployees, int *NumOfEmployees);
 
 

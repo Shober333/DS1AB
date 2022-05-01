@@ -5,6 +5,8 @@
 #ifndef HW1_EMPLOYEEDATA_H
 #define HW1_EMPLOYEEDATA_H
 
+#include "companyData.h"
+
 
 class employeeData {
 private:
@@ -14,38 +16,41 @@ private:
     companyData* _employer;
     int _employer_ID;
 
-    //int ID;
+    //int getID;
 
 public:
 
     employeeData(int salary, int grade, companyData* employerData, int employer_ID ){
         _salary = salary;
         _grade = grade;
-        _employer = employer;
+        _employer = employerData;
         _employer_ID = employer_ID;
     }
 
     //some getters:
-    int salary(){
+    int salary()const{
         return _salary;
     }
 
-    int grade(){
+    int grade()const{
         return _grade;
     }
 
-    int employer_ID(){
+    int employer_ID()const{
         return _employer_ID;
     }
 
-    companyData employerData(){
-        return _employer*;
+    companyData* employerData()const{
+        return _employer;
     }
 
-    void update_employer(companyData){
-        (_employer*).update(companyData);
+    void increase_grade(){
+        _grade++;
     }
 
+    void increase_salary(const int SalaryIncrease){
+        _salar += SalaryIncrease;
+    }
 
 };
 

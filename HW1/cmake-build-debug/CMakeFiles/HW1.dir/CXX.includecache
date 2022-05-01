@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/EmployeeManager.cpp
+employeeData.h
+/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/employeeData.h
+companyData.h
+/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/companyData.h
+EmployeeManager.h
+/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/EmployeeManager.h
+
+/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/EmployeeManager.h
+
+/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/companyData.cpp
+companyData.h
+/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/companyData.h
+
+/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/companyData.h
+salaryKey.h
+/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/salaryKey.h
+employeeData.h
+/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/employeeData.h
+
+/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/employeeData.cpp
+employeeData.h
+/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/employeeData.h
+
+/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/employeeData.h
+companyData.h
+/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/companyData.h
+
+/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/salaryKey.h
+

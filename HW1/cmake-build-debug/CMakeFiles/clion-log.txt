@@ -1,1 +1,4 @@
-CMake executable not found: \\wsl$\Ubuntu\usr\bin\cmake Configure Disable profile
+C:\Windows\system32\wsl.exe --distribution Ubuntu --exec /bin/sh -c "export CLION_IDE=TRUE && export JETBRAINS_IDE=TRUE && cd '/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/cmake-build-debug' && /usr/local/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G 'CodeBlocks - Unix Makefiles' '/mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1'"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /mnt/c/Users/shoha/Desktop/Technion/Courses/this_semester/234218 - Data Structures 1/WET_HW/HW1/cmake-build-debug

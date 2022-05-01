@@ -5,6 +5,8 @@
 #ifndef HW1_COMPANYDATA_H
 #define HW1_COMPANYDATA_H
 
+#include "salaryKey.h"
+#include "employeeData.h"
 
 class companyData {
 private:
@@ -14,11 +16,11 @@ private:
     AvlTree _employees_by_salary;
 public:
 
-    companyData(int value){
+    companyData(const int value){
         _value = value;
         _size = 0;
-        _employees_by_ID = AvlTree();
-        _employees_by_salary = AvlTree();
+        _employees_by_ID = new AvlTree();
+        _employees_by_salary = new AvlTree();
     }
 
 
@@ -32,26 +34,30 @@ public:
     //something with employers and the trees
 
     //setters
-    void update_value(int new_value){
+    void update_value(const int new_value){
         _value = new_value;
     }
 
-    void add_employee(int ID, salaryKey s_k, employeeData data){
+    void add_employee(const int ID, const salaryKey s_k, const employeeData data){
         _employees_by_ID.insert(data, ID);
         _employees_by_salary.insert(data, s_k);
+        _size++;
     }
 
-    void update_tree(AvlTree new_by_ID, AvlTree new_by_salery){
-        //maybe we want to only allow add and remove?
+    void remove_employee(const int ID){
+        int salary = (_employees_by_ID.find(ID)).salary();
+        _employees_by_ID.remove(ID);
+        _employees_by_salary.remove(salaryKey(salary, ID));
+        size--;
     }
 
+    employeeData& find_employee(const int ID){
+        return _employees_by_ID.find(ID);
+    }
 
-
-    companyData update(companyData new_data){
-        this.update_value(new_data.get_value());
-        this.update_size(new_data.get_size());
-        //AVL should be update too
-    };
+    employeeData& find_employee(const salaryKey sk){
+        return this.find_employee(sk.ID());
+    }
 };
 
 
