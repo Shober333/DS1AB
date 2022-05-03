@@ -109,19 +109,41 @@ EMStatusType EmployeeManager::PromoteEmployee(int EmployeeID, int SalaryIncrease
     employeeData our_employee = _employees_by_ID.find(EmployeeID);
     if(our_employee == nullptr) return EM_FAILURE;
     salaryKey sk = salaryKey(our_employee.salary(), EmployeeID);
-    employeeData also_our_employee = _employees_by_salary.find(sk);
     if(BumpGrade > 0){
         our_employee.increase_grade();
-        also_our_employee.increase_grade();
     }
     our_employee.increase_salary(SalaryIncrease);
-    //needs to remove him and than add him with a new key
-    //also needed to upadate him on other files
+    _employees_by_salary.remove(sk);
+    sk.update_salary(sk.salary() + SalaryIncrease);
+    _employees_by_salary.insert)(our_employee, sk);
+    return EM_SUCCESS;
 }
 
-EMStatusType EmployeeManager::HireEmployee(int EmployeeID, int NewCompanyID);
+EMStatusType EmployeeManager::HireEmployee(int EmployeeID, int NewCompanyID){
+    if( (EmployeeID <= 0) || (NewCompanyID <= 0) ) return EM_INVALID_INPUT;
+    employeeData our_employee = _employees_by_ID.find(EmployeeID);
+    int old_employer_ID = our_employee.employer_ID();
+    if ( (our_employee == nullptr) || (old_employer_ID == NewCompanyID)) return EM_FAILURE;
+    companyData new_company = _companies.find(NewCompanyID);
+    if (new_company == nullptr) reutnr EM_FAILURE;
+    (our_employee.employerData())->remove_employee(EmployeeID);
+    salaryKey our_sk = salaryKey(EmployeeID, our_employee.salary());
+    new_company.add_employee(EmployeeID, our_sk, our_employee);
+    our_employee.change_employer(&new_company);
+    _employees_by_salary.remove(our_sk);
+    _employees_by_salary.insert)(our_employee, our_sk);
+    return EM_SUCCESS;
+}
 
-EMStatusType EmployeeManager::AcquireCompany(int AcquirerID, int TargetID, double Factor);
+EMStatusType EmployeeManager::AcquireCompany(int AcquirerID, int TargetID, double Factor){
+    if((AcquirerID <= 0) || (TargetID <= 0) || (Factor < 1.00) || (AcquirerID == TargetID)) return EM_INVALID_INPUT;
+    companyData AcquirerCompany = _companies(AcquirerID);
+    companyData TargetCompany = _companies(TargetID);
+    if((AcquirerCompany == nullptr) || (TargetCompany == nullptr) ||
+        AcquirerCompany.value() < 10*TargetCompany.value()) return EM_FAILURE;
+    //to be continued...
+
+}
 
 EMStatusType EmployeeManager::GetHighestEarner(int CompanyID, int *EmployeeID);
 

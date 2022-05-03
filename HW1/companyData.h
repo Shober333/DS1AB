@@ -48,7 +48,7 @@ public:
         int salary = (_employees_by_ID.find(ID)).salary();
         _employees_by_ID.remove(ID);
         _employees_by_salary.remove(salaryKey(salary, ID));
-        size--;
+        _size--;
     }
 
     employeeData& find_employee(const int ID){

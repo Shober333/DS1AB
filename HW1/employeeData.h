@@ -52,6 +52,10 @@ public:
         _salar += SalaryIncrease;
     }
 
+    void change_employer(const companyData* new_employer){
+        _employer = new_employer;
+    }
+
 };
 
 
