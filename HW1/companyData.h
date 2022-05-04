@@ -14,6 +14,7 @@ private:
     int _size; //employeeAmount
     AvlTree _employees_by_ID;
     AvlTree _employees_by_salary;
+    int best_employee_ID;
 public:
 
     companyData(const int value){

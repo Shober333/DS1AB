@@ -9,16 +9,22 @@
 EmployeeManager::EmployeeManager(){
     _c_amount = 0;
     _e_amount = 0;
-    _companies = AvlTree();
-    _employees_by_ID = AvlTree();
-    _employees_by_salary = AvlTree();
+    _companies = new AvlTree();
+    _employees_by_ID = new AvlTree();
+    _employees_by_salary = new AvlTree();
 }
 
 EMStatusType EmployeeManager::AddCompany(int CompanyID, int Value){
     if((CompanyID <= 0) || (Value <= 0)){
         return EM_INVALID_INPUT;
     }
-    companyData company_data = companyData(Value);
+    try{
+        companyData company_data = new companyData(Value);
+    }
+    catch(std::bad_alloc){
+        delete(companyData);
+        return EM_ALLOCATION_ERROR
+    }
     if (company_data == nullptr) return EM_ALLOCATION_ERROR;
     EMStatusType status= _companies.insert(company_data, CompanyID);
     if (status == EM_SUCCESS)
@@ -145,12 +151,26 @@ EMStatusType EmployeeManager::AcquireCompany(int AcquirerID, int TargetID, doubl
 
 }
 
-EMStatusType EmployeeManager::GetHighestEarner(int CompanyID, int *EmployeeID);
+EMStatusType EmployeeManager::GetHighestEarner(int CompanyID, int *EmployeeID){
+    if( (CompanyID == 0) || (EmployeeID == nullptr)) return EM_INVALID_INPUT;
+    if(CompanyID < 0){
 
-EMStatusType EmployeeManager::GetAllEmployeesBySalary(int CompanyID, int **Employees, int *NumOfEmployees);
+    }
+    if(CompanyID > 0){
 
-EMStatusType EmployeeManager::GetHighestEarnerInEachCompany(int NumOfCompanies, int **Employees);
+    }
+}
+
+EMStatusType EmployeeManager::GetAllEmployeesBySalary(int CompanyID, int **Employees, int *NumOfEmployees){
+
+}
+
+EMStatusType EmployeeManager::GetHighestEarnerInEachCompany(int NumOfCompanies, int **Employees){
+
+}
 
 EMStatusType EmployeeManager::GetNumEmployeesMatching(int CompanyID, int MinEmployeeID, int MaxEmployeeId,
-                                   int MinSalary, int MinGrade, int *TotalNumOfEmployees, int *NumOfEmployees);
+                                   int MinSalary, int MinGrade, int *TotalNumOfEmployees, int *NumOfEmployees){
+
+}
 
