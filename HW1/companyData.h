@@ -14,7 +14,7 @@ private:
     int _size; //employeeAmount
     AvlTree _employees_by_ID;
     AvlTree _employees_by_salary;
-    int best_employee_ID;
+    salaryKey best_employee;
 public:
 
     companyData(const int value){
@@ -32,6 +32,9 @@ public:
     int size()const{
         return _size;
     }
+    int best_employee_ID()const{
+        return best_employee.getID();
+    }
     //something with employers and the trees
 
     //setters
@@ -43,9 +46,15 @@ public:
         _employees_by_ID.insert(data, ID);
         _employees_by_salary.insert(data, s_k);
         _size++;
+        if (s_k >= best_employee){
+            best_employee = s_k
+        }
     }
 
     void remove_employee(const int ID){
+        if(ID == best_employee.getID()){
+         //SHOULD FIND THE NEXT BEST EMPLOYEE AND UPDATE HIM TO HERE
+        }
         int salary = (_employees_by_ID.find(ID)).salary();
         _employees_by_ID.remove(ID);
         _employees_by_salary.remove(salaryKey(salary, ID));

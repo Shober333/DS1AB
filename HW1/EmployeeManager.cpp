@@ -23,7 +23,7 @@ EMStatusType EmployeeManager::AddCompany(int CompanyID, int Value){
     }
     catch(std::bad_alloc){
         delete(companyData);
-        return EM_ALLOCATION_ERROR
+        return EM_ALLOCATION_ERROR;
     }
     if (company_data == nullptr) return EM_ALLOCATION_ERROR;
     EMStatusType status= _companies.insert(company_data, CompanyID);
@@ -44,12 +44,13 @@ EMStatusType EmployeeManager::AddEmployee(int EmployeeID, int CompanyID, int Sal
     employeeData employee_data = employeeData(Salary, Grade, &companyData, CompanyID);
     EMStatusType status = _employees_by_ID.insert(EmployeeID, employee_data);
     if (status != EM_SUCCESS) return status;
-
+    salaryKey our_sk = salaryKey(Salary, EmployeeID);
     status = _employees_by_salary.insert(salaryKey(Salary, EmployeeID), employee_data);
-    employer.add_employee(EmployeeID, salaryKey(Salary, EmployeeID), employee_data);
+    employer.add_employee(EmployeeID, our_sk, employee_data);
 
     if (status == EM_SUCCESS){
         _e_amount++;
+        if(our_sk >= best_employee) best_employee = our_sk;
     }
 
     else{
@@ -147,30 +148,60 @@ EMStatusType EmployeeManager::AcquireCompany(int AcquirerID, int TargetID, doubl
     companyData TargetCompany = _companies(TargetID);
     if((AcquirerCompany == nullptr) || (TargetCompany == nullptr) ||
         AcquirerCompany.value() < 10*TargetCompany.value()) return EM_FAILURE;
-    //to be continued...
+    //to be continued... we need to merge 2 trees
 
 }
 
 EMStatusType EmployeeManager::GetHighestEarner(int CompanyID, int *EmployeeID){
     if( (CompanyID == 0) || (EmployeeID == nullptr)) return EM_INVALID_INPUT;
     if(CompanyID < 0){
+        if(_e_amount == 0) return EM_FAILURE;
+        *EmployeeID = best_employee.getID();
+        return EM_SUCCESS;
+    }
+    if(CompanyID > 0){
+        companyData our_company = _companies.find(CompanyID);
+        if( (our_company == nullptr) || (our_company.size() == 0) ) return EM_FAILURE;
+        *EmployeeID = our_company.best_employee_ID();
+        return EM_SUCCESS;
+    }
+}
+
+EMStatusType EmployeeManager::GetAllEmployeesBySalary(int CompanyID, int **Employees, int *NumOfEmployees){
+    if((Employees == nullptr) || (NumOfEmployees == nullptr) || (CompanyID == 0)) return EM_INVALID_INPUT;
+    if(CompanyID < 0){
+        if(_e_amount == 0) return EM_FAILURE;
+        *NumOfEmployees = _e_amount;
+        *Employees = _employees_by_salary.special();
+        return EM_SUCCESS;
+    }
+    if(CompanyID > 0){
+        companyData our_company = _companies.find(CompanyID);
+        if( (our_company == nullptr) || (our_company.size() == 0) ) return EM_FAILURE;
+        *NumOfEmployees = our_company.size();
+        *Employees = our_company.special(); //oof im not sure how it will be done,
+        // i guess we need to write a special function for company using the special avl tree function
+        return EM_SUCCESS;
+    }
+
+}
+
+EMStatusType EmployeeManager::GetHighestEarnerInEachCompany(int NumOfCompanies, int **Employees){
+    if((Employees == nullptr) || (NumOfCompanies < 1)) return EM_INVALID_INPUT;
+
+    //i got no idea
+}
+
+EMStatusType EmployeeManager::GetNumEmployeesMatching(int CompanyID, int MinEmployeeID, int MaxEmployeeId,
+                                   int MinSalary, int MinGrade, int *TotalNumOfEmployees, int *NumOfEmployees){
+    if((TotalNumOfEmployees == nullptr) || (NumOfEmployees == nullptr) || (CompanyID == 0) || (MinEmployeeID < 0)
+        || (MaxEmployeeId < 0) || (MinEmployeeID > MaxEmployeeId) || (MinGrade < 0) || (MinSalary < 0))
+        return EM_INVALID_INPUT;
+    if(CompanyID < 0){
 
     }
     if(CompanyID > 0){
 
     }
-}
-
-EMStatusType EmployeeManager::GetAllEmployeesBySalary(int CompanyID, int **Employees, int *NumOfEmployees){
-
-}
-
-EMStatusType EmployeeManager::GetHighestEarnerInEachCompany(int NumOfCompanies, int **Employees){
-
-}
-
-EMStatusType EmployeeManager::GetNumEmployeesMatching(int CompanyID, int MinEmployeeID, int MaxEmployeeId,
-                                   int MinSalary, int MinGrade, int *TotalNumOfEmployees, int *NumOfEmployees){
-
 }
 

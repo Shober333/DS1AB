@@ -7,16 +7,6 @@ CMakeFiles/HW1.dir/EmployeeManager.cpp.o: \
  ../companyData.h \
  ../employeeData.h \
  ../salaryKey.h
-CMakeFiles/HW1.dir/companyData.cpp.o: \
- ../companyData.cpp \
- ../companyData.h \
- ../employeeData.h \
- ../salaryKey.h
-CMakeFiles/HW1.dir/employeeData.cpp.o: \
- ../companyData.h \
- ../employeeData.cpp \
- ../employeeData.h \
- ../salaryKey.h
 CMakeFiles/HW1.dir/library1.cpp.o: \
  ../EmployeeManager.h \
  ../library1.cpp \
